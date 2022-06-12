@@ -1,5 +1,6 @@
 mod components;
 mod entities;
+mod map;
 mod systems;
 
 use ggez::{conf, event, Context, GameResult};
@@ -32,10 +33,26 @@ impl event::EventHandler<ggez::GameError> for Game {
     }
 }
 
+pub fn initialize_level(world: &mut World) {
+    const MAP: &str = "
+    N N W W W W W W
+    W W W . . . . W
+    W . . . B . . W
+    W . . . . . . W
+    W . P . . . . W
+    W . . . . . . W
+    W . . S . . . W
+    W . . . . . . W
+    W W W W W W W W
+    ";
+
+    map::load_map(world, MAP.to_string());
+}
+
 pub fn main() -> GameResult {
     let mut world = World::new();
     components::register_components(&mut world);
-    entities::initialize_level(&mut world);
+    initialize_level(&mut world);
 
     // Create a game context and event loop
     let context_builder = ggez::ContextBuilder::new("rust_sokoban", "sokoban")

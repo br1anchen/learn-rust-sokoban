@@ -54,30 +54,3 @@ pub fn create_player(world: &mut World, position: Position) {
         .with(Player {})
         .build();
 }
-
-pub fn initialize_level(world: &mut World) {
-    create_player(
-        world,
-        Position {
-            x: 0,
-            y: 0,
-            z: 0, // we will get the z from the factory functions
-        },
-    );
-    create_wall(
-        world,
-        Position {
-            x: 1,
-            y: 0,
-            z: 0, // we will get the z from the factory functions
-        },
-    );
-    create_box(
-        world,
-        Position {
-            x: 2,
-            y: 0,
-            z: 0, // we will get the z from the factory functions
-        },
-    );
-}
