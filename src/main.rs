@@ -1,37 +1,16 @@
 mod components;
 mod entities;
+mod game;
 mod map;
+mod resources;
 mod systems;
 
-use ggez::{conf, event, Context, GameResult};
-use specs::{RunNow, World, WorldExt};
+use components::register_components;
+use game::Game;
+use ggez::{conf, event, ContextBuilder, GameResult};
+use resources::register_resources;
+use specs::{World, WorldExt};
 use std::path;
-
-// This struct will hold all our game state
-// For now there is nothing to be held, but we'll add
-// things shortly.
-struct Game {
-    world: World,
-}
-
-// This is the main event loop. ggez tells us to implement
-// two things:
-// - updating
-// - rendering
-impl event::EventHandler<ggez::GameError> for Game {
-    fn update(&mut self, _context: &mut Context) -> GameResult {
-        // TODO: update game logic here
-        Ok(())
-    }
-
-    fn draw(&mut self, context: &mut Context) -> GameResult {
-        {
-            let mut rs = systems::RenderingSystem { context };
-            rs.run_now(&self.world);
-        }
-        Ok(())
-    }
-}
 
 pub fn initialize_level(world: &mut World) {
     const MAP: &str = "
@@ -51,11 +30,12 @@ pub fn initialize_level(world: &mut World) {
 
 pub fn main() -> GameResult {
     let mut world = World::new();
-    components::register_components(&mut world);
+    register_components(&mut world);
+    register_resources(&mut world);
     initialize_level(&mut world);
 
     // Create a game context and event loop
-    let context_builder = ggez::ContextBuilder::new("rust_sokoban", "sokoban")
+    let context_builder = ContextBuilder::new("rust_sokoban", "sokoban")
         .window_setup(conf::WindowSetup::default().title("Rust Sokoban!"))
         .window_mode(conf::WindowMode::default().dimensions(800.0, 600.0))
         .add_resource_path(path::PathBuf::from("./resources"));
