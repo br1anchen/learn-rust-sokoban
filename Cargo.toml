@@ -7,5 +7,5 @@ edition = "2021"
 
 [dependencies]
 ggez = "0.7"
-glam = { version = "0.20.0", features = ["mint"] }
+glam = { version = "0.20.5", features = ["mint"] }
 specs = { version = "0.17.0", features = ["specs-derive"] }
