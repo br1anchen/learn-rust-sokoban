@@ -857,7 +857,7 @@ dependencies = [
  "gfx_core",
  "gfx_device_gl",
  "gilrs",
- "glam",
+ "glam 0.20.5",
  "glutin",
  "glyph_brush",
  "image",
@@ -933,6 +933,15 @@ name = "glam"
 version = "0.20.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f43e957e744be03f5801a55472f593d43fabdebf25a4585db250f04d86b1675f"
+dependencies = [
+ "mint",
+]
+
+[[package]]
+name = "glam"
+version = "0.21.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3a584a40db880a596e88e5065bf3018f92b1ae9e9143a05c6122068a5cb21a1b"
 dependencies = [
  "mint",
 ]
@@ -2050,7 +2059,7 @@ name = "rust-sokoban"
 version = "0.1.0"
 dependencies = [
  "ggez",
- "glam",
+ "glam 0.21.1",
  "specs",
 ]
 
