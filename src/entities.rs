@@ -1,4 +1,4 @@
-use crate::components::{Box, BoxSpot, Player, Position, Renderable, Wall};
+use crate::components::{Box, BoxSpot, Immovable, Movable, Player, Position, Renderable, Wall};
 use specs::{Builder, World, WorldExt};
 
 pub fn create_wall(world: &mut World, position: Position) {
@@ -9,6 +9,7 @@ pub fn create_wall(world: &mut World, position: Position) {
             path: "/images/wall.png".to_string(),
         })
         .with(Wall {})
+        .with(Immovable)
         .build();
 }
 
@@ -30,6 +31,7 @@ pub fn create_box(world: &mut World, position: Position) {
             path: "/images/box.png".to_string(),
         })
         .with(Box {})
+        .with(Movable)
         .build();
 }
 
@@ -52,5 +54,6 @@ pub fn create_player(world: &mut World, position: Position) {
             path: "/images/player.png".to_string(),
         })
         .with(Player {})
+        .with(Movable)
         .build();
 }
