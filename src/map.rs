@@ -2,7 +2,10 @@ use crate::components::Position;
 use crate::entities::{create_box, create_box_spot, create_floor, create_player, create_wall};
 use specs::World;
 
-pub fn load_map(world: &mut World, map_string: String) {
+pub const MAP_HEIGHT: u8 = 9;
+pub const MAP_WIDTH: u8 = 8;
+
+pub fn load_map_func(world: &mut World, map_string: String) {
     // read all lines
     let rows: Vec<&str> = map_string.trim().split('\n').map(|x| x.trim()).collect();
 
@@ -41,4 +44,26 @@ pub fn load_map(world: &mut World, map_string: String) {
             }
         }
     }
+}
+
+#[macro_export]
+macro_rules! load_map {
+    ($w: expr, $ws: expr) => {
+        load_map_func($w, $ws)
+    };
+    ($w: expr) => {
+        const MAP: &str = "
+            N N W W W W W W
+            W W W . . . . W
+            W . . . B . . W
+            W . . . . . . W
+            W . P . . . . W
+            W . . . . . . W
+            W . . S . . . W
+            W . . . . . . W
+            W W W W W W W W
+            ";
+
+        load_map_func($w, MAP.to_string())
+    };
 }

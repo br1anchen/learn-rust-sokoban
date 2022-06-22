@@ -8,24 +8,13 @@ mod systems;
 use components::register_components;
 use game::Game;
 use ggez::{conf, event, ContextBuilder, GameResult};
+use map::load_map_func;
 use resources::register_resources;
 use specs::{World, WorldExt};
 use std::path;
 
 pub fn initialize_level(world: &mut World) {
-    const MAP: &str = "
-    N N W W W W W W
-    W W W . . . . W
-    W . . . B . . W
-    W . . . . . . W
-    W . P . . . . W
-    W . . . . . . W
-    W . . S . . . W
-    W . . . . . . W
-    W W W W W W W W
-    ";
-
-    map::load_map(world, MAP.to_string());
+    load_map!(world);
 }
 
 pub fn main() -> GameResult {
