@@ -32,10 +32,18 @@ impl event::EventHandler<GameError> for Game {
     }
 
     fn update(&mut self, _context: &mut Context) -> GameResult {
+        // Run input system
         {
             let mut is = InputSystem {};
             is.run_now(&self.world);
         }
+
+        // Run gameplay state system
+        {
+            let mut gss = GameplayStateSystem {};
+            gss.run_now(&self.world);
+        }
+
         Ok(())
     }
 
