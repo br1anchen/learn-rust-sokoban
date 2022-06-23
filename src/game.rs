@@ -1,10 +1,13 @@
 use ggez::{
     event::{self, KeyCode, KeyMods},
-    Context, GameError, GameResult,
+    timer, Context, GameError, GameResult,
 };
 use specs::{RunNow, World, WorldExt};
 
-use crate::{resources::InputQueue, systems::*};
+use crate::{
+    resources::{InputQueue, Time},
+    systems::*,
+};
 
 // This struct will hold all our game state
 // For now there is nothing to be held, but we'll add
@@ -31,7 +34,7 @@ impl event::EventHandler<GameError> for Game {
         input_queue.keys_pressed.push(keycode);
     }
 
-    fn update(&mut self, _context: &mut Context) -> GameResult {
+    fn update(&mut self, context: &mut Context) -> GameResult {
         // Run input system
         {
             let mut is = InputSystem {};
@@ -42,6 +45,12 @@ impl event::EventHandler<GameError> for Game {
         {
             let mut gss = GameplayStateSystem {};
             gss.run_now(&self.world);
+        }
+
+        // Get and update time resource
+        {
+            let mut time = self.world.write_resource::<Time>();
+            time.delta += timer::delta(context);
         }
 
         Ok(())
