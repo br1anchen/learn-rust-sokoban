@@ -4,8 +4,7 @@ use ggez::{
 };
 use specs::{RunNow, World, WorldExt};
 
-use crate::systems::rendering_system::RenderingSystem;
-use crate::{resources::InputQueue, systems::input_system::InputSystem};
+use crate::{resources::InputQueue, systems::*};
 
 // This struct will hold all our game state
 // For now there is nothing to be held, but we'll add

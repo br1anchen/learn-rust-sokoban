@@ -1,15 +1,16 @@
 mod components;
+mod constants;
 mod entities;
 mod game;
 mod map;
 mod resources;
 mod systems;
 
-use components::register_components;
-use game::Game;
+use components::*;
+use game::*;
 use ggez::{conf, event, ContextBuilder, GameResult};
-use map::load_map_func;
-use resources::register_resources;
+use map::*;
+use resources::*;
 use specs::{World, WorldExt};
 use std::path;
 

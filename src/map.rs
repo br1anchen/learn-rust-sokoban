@@ -1,9 +1,6 @@
 use crate::components::Position;
-use crate::entities::{create_box, create_box_spot, create_floor, create_player, create_wall};
+use crate::entities::*;
 use specs::World;
-
-pub const MAP_HEIGHT: u8 = 9;
-pub const MAP_WIDTH: u8 = 8;
 
 pub fn load_map_func(world: &mut World, map_string: String) {
     // read all lines

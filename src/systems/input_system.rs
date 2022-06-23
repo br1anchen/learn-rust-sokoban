@@ -5,7 +5,7 @@ use specs::{join::Join, world::Index, Entities, ReadStorage, System, Write, Writ
 
 use crate::{
     components::{Immovable, Movable, Player, Position},
-    map::{MAP_HEIGHT, MAP_WIDTH},
+    constants::{MAP_HEIGHT, MAP_WIDTH},
     resources::InputQueue,
 };
 

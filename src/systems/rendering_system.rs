@@ -1,4 +1,7 @@
-use crate::components::{Position, Renderable};
+use crate::{
+    components::{Position, Renderable},
+    constants::TILE_WIDTH,
+};
 
 use ggez::{
     graphics::{self, DrawParam, Image},
@@ -6,8 +9,6 @@ use ggez::{
 };
 use glam::Vec2;
 use specs::{join::Join, ReadStorage, System};
-
-const TILE_WIDTH: f32 = 32.0;
 
 pub struct RenderingSystem<'a> {
     pub context: &'a mut Context,

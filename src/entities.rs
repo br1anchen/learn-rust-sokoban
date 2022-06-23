@@ -1,4 +1,4 @@
-use crate::components::{Box, BoxSpot, Immovable, Movable, Player, Position, Renderable, Wall};
+use crate::components::*;
 use specs::{Builder, World, WorldExt};
 
 pub fn create_wall(world: &mut World, position: Position) {
