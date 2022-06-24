@@ -53,6 +53,12 @@ impl event::EventHandler<GameError> for Game {
             time.delta += timer::delta(context);
         }
 
+        // Run event system
+        {
+            let mut es = EventSystem { context };
+            es.run_now(&self.world);
+        }
+
         Ok(())
     }
 
